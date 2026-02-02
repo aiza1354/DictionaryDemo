@@ -1,0 +1,82 @@
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
+
+
+// Difficulty: Beginner
+//Concept: Basic put/get operations
+//Create a program that stores student names as keys and their house (Gryffindor, Hufflepuff, etc.) as values.
+//Requirements:
+//	• Add at least 8 students to the register
+//Allow the user to search for a student by name and display their house
+//	• Display all students in a particular house
+//	• Show total count of students in each house
+//Extension: Allow adding new students and changing houses
+
+public class ClassroomRegister {
+    public static void main(String[] args) {
+        displayStudentinHouse();
+    }
+
+    public static void demonstrateHashMap() {
+        System.out.println("Classroom Register: ");
+
+        Map<String, String> classroomRegister = new HashMap<>();
+        classroomRegister.put("Avika", "Ravenclaw");
+        classroomRegister.put("Chloe", "Slytherin");
+        classroomRegister.put("Aiza", "Slytherin");
+        classroomRegister.put("Olivia", "Ravenclaw");
+        classroomRegister.put("Sophie", "RavenClaw");
+        classroomRegister.put("Ellie", "Hufflepuff");
+        classroomRegister.put("Mr Bradley", "Ravenclaw");
+        classroomRegister.put("Ms Mogio", "Hufflepuff");
+
+        System.out.println("All houses" + classroomRegister);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the name you want to search for.");
+        String nameSearch = scanner.nextLine();
+        if (nameSearch.equals("Chloe")) {
+            if (classroomRegister.containsKey("Chloe")) {
+                System.out.println("Chloe is in the classroom.");
+                System.out.println("Chloe's house : " + classroomRegister.get("Chloe"));
+            } else {
+                System.out.println("Chloe is not in the classroom.");
+                return;
+            }
+            if (classroomRegister.containsKey("Avika")) {
+                System.out.println("Avika is in the classroom.");
+                System.out.println("Avika's house : " + classroomRegister.get("Avika"));
+            } else {
+                System.out.println("Avika is not in the classroom."); }
+            return;
+        }
+        else  {
+            System.out.println(nameSearch + "is not in the classroom.");
+        }
+
+
+    }
+
+    public static void displayStudentinHouse() {
+        System.out.println("Classroom Register: ");
+        Map<String, String> classroomRegister = new HashMap<>();
+        classroomRegister.put("Avika", "Ravenclaw");
+        classroomRegister.put("Chloe", "Slytherin");
+        classroomRegister.put("Aiza", "Slytherin");
+        classroomRegister.put("Olivia", "Ravenclaw");
+        classroomRegister.put("Sophie", "RavenClaw");
+        classroomRegister.put("Ellie", "Hufflepuff");
+        classroomRegister.put("Mr Bradley", "Ravenclaw");
+        classroomRegister.put("Ms Mogio", "Hufflepuff");
+
+        Scanner scanner = new Scanner(System.in);
+        String namesInHouse = scanner.nextLine();
+        for (Map.Entry<String, String> entry: classroomRegister.entrySet()) {
+            if (entry.getValue().equals(namesInHouse)){
+                System.out.println(entry.getKey());
+            }
+
+        }
+
+    }
+}
