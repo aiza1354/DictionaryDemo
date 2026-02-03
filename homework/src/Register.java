@@ -5,35 +5,39 @@ import java.util.Scanner;
 
 public class Register {
     public static void main (String [] args) {
-        Map<String, String> register = createRegister();
-        userMenu(register);
+        userMenu(createRegister());
     }
 
     private static void userMenu(Map<String, String> register) {
         boolean running = true;
         System.out.println("Houses 2025-2026!");
+
         while (running) {
-            System.out.println("Menu, choose a number: \n1. Search for a student by name and display their house. \n2. Show the members of a particular house. \n3. Count the number of students in a house.\n4. Add or Update Student/House \n5. Exit.");
+            System.out.println("Menu, choose a number: \n1. Display all students \n2. Search for a student by name and display their house. \n3. Show the members of a particular house. \n4. Count the number of students in a house.\n5. Add or Update Student/House \n6. Exit.");
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
-                    scanner.nextLine();
-                    searchStudent(scanner, register);
+                    displayAllStudents(register);
                     break;
                 case 2:
                     scanner.nextLine();
-                    displayStudentInHouse(scanner, register);
+                    searchStudent(scanner, register);
                     break;
                 case 3:
                     scanner.nextLine();
-                    showNumberOfStudentInHouse(scanner, register);
+                    displayStudentInHouse(scanner, register);
                     break;
                 case 4:
                     scanner.nextLine();
-                    addOrUpdateStudent(scanner, register);
+                    showNumberOfStudentInHouse(scanner, register);
+                    break;
                 case 5:
+                    scanner.nextLine();
+                    addOrUpdateStudent(scanner, register);
+                    break;
+                case 6:
                     running = false;
                     break;
 
@@ -47,11 +51,18 @@ public class Register {
         register.put("Chloe", "Slytherin");
         register.put("Aiza", "Slytherin");
         register.put("Olivia", "Ravenclaw");
-        register.put("Sophie", "RavenClaw");
+        register.put("Sophie", "Ravenclaw");
         register.put("Ellie", "Hufflepuff");
         register.put("Mr Bradley", "Ravenclaw");
         register.put("Ms Mogio", "Hufflepuff");
         return register;
+    }
+
+    // loops through all key-value pairs and showcases them
+    public static void displayAllStudents(Map < String, String > register){
+        for (Map.Entry<String, String > entry : register.entrySet()) {
+            System.out.println(entry.getKey() + " is in: " + entry.getValue());
+        }
     }
 
     public static void searchStudent (Scanner scanner, Map < String, String > register){
@@ -59,10 +70,8 @@ public class Register {
             String name = scanner.nextLine();
             if (register.containsKey(name)) {
                 System.out.println(name + "'s house is: " + register.get(name));
-                scanner.nextLine();
             } else {
                 System.out.println("Student not found.");
-                scanner.nextLine();
             }
 
         }
