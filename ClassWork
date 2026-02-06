@@ -1,0 +1,106 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+/*
+PLAN:
+1. Create student class with private attributes? (doing public for now): string name, integer and a hashmap of GRADES.
+2. Create a hashmap for grades:
+3. Create a getter for name etc.
+4. Test that all works
+5. THEN move on to calculating average, looping through all grades etc.
+
+TO DO:
+
+Create a Student class that can:
+	• Store a student's name, ID number, and multiple grades (use Hashmap)
+	• Add a new grade to a student's record
+	--> .put
+	• Calculate the average of all grades
+	loop through + calculate
+	• Display student information in a clear format
+	Loop through hashmap use Map.Entry..... then print
+
+Test your class by:
+	• Creating 3-5 student objects
+	create students
+	• Adding several grades to each student
+	• Calculating and displaying each student's average
+	* Calculating and displaying the overall class average
+*/
+
+public class Student {
+    private static String name;
+    private final int id;
+    private final int grades;
+
+    public Student(String name, int id, int grades) {
+        this.name = name;
+        this.id = id;
+        this.grades = grades;
+    }
+
+
+    public static String getName() {
+        return name;
+    }
+
+    public static Map<String, Integer> createStudents() {
+        Map<String, Integer> grades = new HashMap<>();
+        Student aiza = new Student("Aiza", 2, 4);
+        grades.put(aiza.getName(), 76);
+        grades.put(aiza.getName(), 65);
+        grades.put(aiza.getName(), 90);
+        return grades;
+    }
+
+    public static void main(String[] args) {
+        calculateIndividualGrade(createStudents());
+    }
+
+
+    public static void calculateAverageOfAll(Map<String, Integer> grades) {
+        int totalMarks = 0;
+        int total = grades.size();
+        for (Map.Entry<String, Integer> entry : grades.entrySet()) {
+            totalMarks += entry.getValue();
+        }
+        int finalAverage = totalMarks/total;
+
+        System.out.println("The average grade of all students across all subjects : " + finalAverage + " %.");
+    }
+
+
+        /*public static void userMenu ( Map <String, Integer > grades){
+            boolean running = true;
+            while (running) {
+                System.out.println("Choose an option:\n1. Add new grade for a student.\n2. Calculate average of all grades. \n3. Display student information.\n4. Display data for all students.");
+                Scanner scanner = new Scanner(System.in);
+                int choice = scanner.nextInt();
+                switch (choice) {
+                    case 1:
+                        break;
+                    case 2:
+                        calculateAverageOfAll(scanner, grades);
+
+                }
+
+            }*/
+
+        public static void calculateIndividualGrade (Map < String, Integer > grades) {
+            System.out.println("Type the name of the student to display information for. ");
+            Scanner scanner = new Scanner(System.in);
+            String nameOfChild = scanner.nextLine();
+            if (grades.containsKey(nameOfChild)){
+                for (Map.Entry<String, Integer> entry : grades.entrySet()) {
+                    System.out.println("Student name: " + nameOfChild + " & " + nameOfChild + "'s Grades:" + entry.getValue());
+                }
+            }
+            else {
+                System.out.println("Student does not exist.");
+            }
+
+
+        }
+        }
+
+
